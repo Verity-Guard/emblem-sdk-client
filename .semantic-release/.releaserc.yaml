@@ -1,0 +1,55 @@
+branches:
+  - name: "+([0-9])?(.{+([0-9]),x}).x"
+  - name: "master"
+ci: false
+slackWebhook: "https://hooks.slack.com/services/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"
+preset: "conventionalcommits"
+tagFormat: "@trust/emblem-sdk-client@v${version}"
+plugins:
+  - "@semantic-release/commit-analyzer"
+  - "@semantic-release/release-notes-generator"
+  - "@semantic-release/changelog"
+  - "@semantic-release/git"
+  - "@semantic-release/github"
+  - "@semantic-release/exec"
+  - "semantic-release-slack-bot"
+  - "@semantic-release/npm"
+
+analyzeCommits:
+  - path: "@semantic-release/commit-analyzer"
+    preset: "conventionalcommits"
+
+generateNotes:
+  - path: "@semantic-release/release-notes-generator"
+    linkCompare: false
+    linkReferences: false
+
+prepare:
+  - path: "@semantic-release/changelog"
+    changelogFile: "CHANGELOG.md"
+  - path: "@semantic-release/exec"
+    prepareCmd: "yarn version ${nextRelease.version}"
+  - path: "@semantic-release/exec"
+    prepareCmd: "yarn build"
+  - path: "@semantic-release/git"
+    message: "chore(release): @trust/emblem-sdk-client@v${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+    assets: ["CHANGELOG.md", "package.json"]
+
+publish:
+  - path: "@semantic-release/exec"
+    publishCmd: "yarn npm publish"
+
+success:
+  - path: "@semantic-release/github"
+    successComment: false
+  - path: "semantic-release-slack-bot"
+    notifyOnSuccess: true
+    markdownReleaseNotes: true
+    packageName: "@trust/emblem-sdk-client"
+
+fail:
+  - path: "@semantic-release/github"
+    failComment: false
+  - path: "semantic-release-slack-bot"
+    notifyOnFail: true
+    packageName: "@trust/emblem-sdk-client"

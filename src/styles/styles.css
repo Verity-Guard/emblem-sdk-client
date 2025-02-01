@@ -1,0 +1,89 @@
+.emblem-container {
+  display: flex;
+  min-height: 700px;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.emblem-left-col {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  background-color: #9f9f9f;
+  width: 100%;
+}
+
+.emblem-right-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 2rem;
+  background-color: #d9d9d9;
+  width: 100%;
+}
+
+.emblem-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.emblem-qr-code-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.emblem-instruction-container {
+  text-align: left;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.emblem-h1 {
+  font-size: 3rem;
+}
+
+.emblem-xl-text {
+  font-size: 1.5rem;
+}
+
+.emblem-3xl-text {
+  font-size: 2rem;
+}
+
+.emblem-bold {
+  font-weight: 700;
+}
+
+.emblem-semibold {
+  font-weight: 600;
+}
+
+.emblem-login {
+  color: #0038FF;
+}
+
+.emblem-verify-now-button {
+  background-color: #0038FF;
+  width: 300px;
+  height: 60px;
+  color: white;
+  border: none;
+  border-radius: 2rem;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .emblem-left-col {
+    max-width: 400px;
+    display: flex;
+  }
+}

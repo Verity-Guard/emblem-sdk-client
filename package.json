@@ -1,0 +1,40 @@
+{
+  "name": "@verityguard/emblem-sdk-client",
+  "version": "1.4.6",
+  "main": "lib/index.js",
+  "author": "Verity Guard, LLC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Verity-Guard/emblem-sdk-client.git"
+  },
+  "scripts": {
+    "clean": "rimraf lib/",
+    "build": "yarn clean && tsc && copyfiles -u 1 src/styles/*.css lib && copyfiles -u 1 src/images/**/* lib",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "i18next": "^23.11.5",
+    "mixpanel-browser": "^2.51.0",
+    "qrcode": "^1.5.3",
+    "react-i18next": "^14.1.1"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "devDependencies": {
+    "@types/mixpanel-browser": "^2.49.0",
+    "@types/node": "^18.14.3",
+    "@types/qrcode": "^1.5.5",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
+    "copyfiles": "^2.4.1",
+    "rimraf": "^5.0.1",
+    "typescript": "5.0.2"
+  },
+  "files": [
+    "lib",
+    "index.js",
+    "index.d.ts"
+  ]
+}

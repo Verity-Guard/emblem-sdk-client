@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "jsx": "react",
+    "rootDir": "src",
+    "outDir": "lib",
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "inlineSources": true,
+    "lib": [
+      "webworker",
+      "DOM"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "downlevelIteration": true,
+    "strict": true,
+    "noUnusedParameters": true,
+    // module related settings
+    "importHelpers": true,
+    "target": "ES6",
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "isolatedModules": false,
+    "resolveJsonModule": true,
+    // base libs
+    // compatibility
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "src/**/*",
+    "types/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    ".npmrc"
+  ],
+}

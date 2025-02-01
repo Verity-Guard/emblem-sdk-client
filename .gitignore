@@ -1,0 +1,25 @@
+# Dependency directories
+node_modules/
+
+# Build outputs
+lib/
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Bundler
+.stats.json
+.bundle-output/
+.cache/
