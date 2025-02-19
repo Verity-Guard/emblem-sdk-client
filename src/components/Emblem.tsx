@@ -26,6 +26,7 @@ function Emblem({
   postbackUrl = "",
   postbackHeaders = "",
   postbackOverride = false,
+  onSuccessUrl = "",
   onClickCallback,
   assignCloseWindow,
   language = 'en',
@@ -52,6 +53,7 @@ function Emblem({
     postbackUrl,
     postbackHeaders,
     postbackOverride: postbackOverride ? true : undefined,
+    onSuccessUrl,
   };
 
   const urlString = createEmblemUrl(url, params, true, login);
@@ -99,6 +101,7 @@ function Emblem({
                 postbackUrl={postbackUrl}
                 postbackHeaders={postbackHeaders}
                 postbackOverride={postbackOverride}
+                onSuccessUrl={onSuccessUrl}
                 login={login}
               />
             ) : (
@@ -130,6 +133,7 @@ function Emblem({
                 postbackUrl={postbackUrl}
                 postbackHeaders={postbackHeaders}
                 postbackOverride={postbackOverride}
+                onSuccessUrl={onSuccessUrl}
                 login={login}
               />
             </div>

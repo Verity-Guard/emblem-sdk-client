@@ -24,6 +24,7 @@ function EmblemButton({
   postbackUrl = "",
   postbackHeaders = "",
   postbackOverride = false,
+  onSuccessUrl = "",
   login = false,
   onClickCallback,
   className = "",
@@ -69,6 +70,7 @@ function EmblemButton({
       postbackUrl,
       postbackHeaders,
       postbackOverride: postbackOverride ? true : undefined,
+      onSuccessUrl,
     };
 
     return createEmblemUrl(url, params, false, login);
