@@ -84,13 +84,17 @@ function EmblemButton({
 
   const handleOnClick = () => {
     mixpanel.trackEvent({ event: 'Emblem Button Click', emblemState: state, projectKey });
-    if (isButton && isBrowser && !onSuccessUrl) {
-      const newWindow = window.open(
-        emblemRedirectRoute,
-        "verify-age-window",
-        "width=380,height=800"
-      );
-      setChildWindow(newWindow);
+    if (isButton && isBrowser) {
+      if (onSuccessUrl) {
+        window.location.href = emblemRedirectRoute;
+      } else {
+        const newWindow = window.open(
+          emblemRedirectRoute,
+          "verify-age-window",
+          "width=380,height=800"
+        );
+        setChildWindow(newWindow);
+      }
     }
     onClickCallback?.();
   };
