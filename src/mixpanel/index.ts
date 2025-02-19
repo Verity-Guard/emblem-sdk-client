@@ -26,11 +26,11 @@ class WrappedMixpanelClient {
     this.initialized = true;
   }
 
-  public trackEvent({ event, ...others }: EventTrackProps) {
+  public trackEvent({ event, emblemState, projectKey }: EventTrackProps) {
     if (!this.initialized) {
-      this.init(others.emblemState);
+      this.init(emblemState);
     };
-    this.api.track(event, { ...others });
+    this.api.track(event, { emblemState, projectKey });
   }
 }
 
