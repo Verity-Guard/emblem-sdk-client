@@ -15,6 +15,7 @@ interface EmblemProps {
   postbackUrl?: string;
   postbackHeaders?: string;
   postbackOverride?: boolean;
+  onSuccessUrl?: string;
   assignCloseWindow?: (closeFn: () => void) => void;
   login?: boolean;
 }

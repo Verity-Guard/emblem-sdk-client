@@ -20,6 +20,7 @@ function EmblemQRCode({
   postbackUrl = "",
   postbackHeaders = "",
   postbackOverride = false,
+  onSuccessUrl = "",
 }: EmblemProps) {
   const valid = validateProps({ url, projectKey, state, reviewRedirectUrl, postbackUrl, postbackHeaders, postbackOverride });
 
@@ -38,6 +39,7 @@ function EmblemQRCode({
       postbackUrl,
       postbackHeaders,
       postbackOverride: postbackOverride ? true : undefined,
+      onSuccessUrl,
     };
     const urlString = createEmblemUrl(url, params, true, !!login);
     if (canvasRef.current && url && projectKey && state) {

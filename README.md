@@ -32,13 +32,13 @@ function App() {
   return (
     <div>
       <EmblemButton
-        url={"https://example.com"}
-        projectKey={"public_key_1234"}
-        state={"state1234"}
+        url="https://emblem.generflow.com"
+        projectKey="public_key_1234"
+        state="state1234"
         style={{ marginRight: "1rem", border: "1px solid gray" }}
-        reviewRedirectUrl={"https://example.com/finish"}
-        postbackUrl={"https://example.com/postback"}
+        postbackUrl="https://example.com/postback"
         postbackHeaders={JSON.stringify({ 'x-gateway': 'abcd-1234' })}
+        onSuccessUrl="https://example.com/redirect"
         onClickCallback={() => console.log("onClick callback")}
         assignCloseWindow={(closeFn) => {
           closeWindowRef.current = closeFn;
@@ -63,7 +63,7 @@ export default App;
 | postbackUrl       | string                          | true     | URL that Emblem will send a POST request to after the user completes the age verification flow                                                                                                     |
 | postbackHeaders   | string                          | false    | JSON stringified object that will be url encoded within the button component. These headers will be included with the POST request                                                                 |
 | postbackOverride  | boolean                         | false    | If true, only the postback will be sent. The POST to the project key's verification url will not be sent                                                                                           |
-| reviewRedirectUrl | string                          | false    | Custom redirect url for manual review                                                                                                                                                              |
+| onSuccessUrl      | string                          | false    | If provided the user will be redirected to this url on successful verification                                                                                                                     |
 | onClickCallback   | function                        | false    | This function will be called in addition to opening the Emblem window                                                                                                                              |
 | label             | string                          | false    | Custom button text                                                                                                                                                                                 |
 | className         | string                          | false    | Custom CSS class                                                                                                                                                                                   |
@@ -77,10 +77,10 @@ interface Props {
   url: string;
   projectKey: string;
   state: string;
-  reviewRedirectUrl: string;
   postbackUrl: string;
   postbackHeaders?: string;
   postbackOverride?: boolean; 
+  onSuccessUrl?: string;
   onClickCallback?: () => void;
   label?: string;
   className?: string;
