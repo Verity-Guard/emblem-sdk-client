@@ -1,3 +1,5 @@
-export { default as EmblemButton } from './components/EmblemButton';
-export { default as EmblemQRCode } from './components/EmblemQRCode';
-export { default as Emblem } from './components/Emblem';
+import EmblemButton from './components/EmblemButton';
+import EmblemQRCode from './components/EmblemQRCode';
+import Emblem from './components/Emblem';
+
+export { EmblemButton, EmblemQRCode, Emblem };

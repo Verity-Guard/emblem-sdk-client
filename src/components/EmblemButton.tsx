@@ -84,6 +84,10 @@ function EmblemButton({
 
   const handleOnClick = () => {
     mixpanel.trackEvent({ event: 'Emblem Button Click', emblemState: state, projectKey });
+    if (onSuccessUrl) {
+      onClickCallback?.();
+      return window.location.href = emblemRedirectRoute;
+    }
     if (isButton && isBrowser) {
       const newWindow = window.open(
         emblemRedirectRoute,
@@ -102,7 +106,7 @@ function EmblemButton({
       style={valid ? style : disabledStyle}
       className={className}
       disabled={!valid}
-      {...(!isButton && { href: emblemRedirectRoute, target: '_blank' })}
+      {...(!isButton && { href: emblemRedirectRoute, target: onSuccessUrl ? undefined : '_blank' })}
     >
       {label}
     </Component>
