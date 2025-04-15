@@ -22,7 +22,6 @@ function Emblem({
   state,
   label = "Verify 18+",
   style = {},
-  reviewRedirectUrl = "",
   postbackUrl = "",
   postbackHeaders = "",
   postbackOverride = false,
@@ -49,7 +48,6 @@ function Emblem({
   const params = {
     projectKey,
     emblemState: state,
-    reviewRedirectUrl,
     postbackUrl,
     postbackHeaders,
     postbackOverride: postbackOverride ? true : undefined,
@@ -97,7 +95,6 @@ function Emblem({
                 assignCloseWindow={assignCloseWindow}
                 onClickCallback={onClickCallback}
                 style={style}
-                reviewRedirectUrl={reviewRedirectUrl}
                 postbackUrl={postbackUrl}
                 postbackHeaders={postbackHeaders}
                 postbackOverride={postbackOverride}
@@ -129,7 +126,6 @@ function Emblem({
                 url={url}
                 state={state}
                 projectKey={projectKey}
-                reviewRedirectUrl={reviewRedirectUrl}
                 postbackUrl={postbackUrl}
                 postbackHeaders={postbackHeaders}
                 postbackOverride={postbackOverride}

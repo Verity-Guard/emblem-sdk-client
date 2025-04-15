@@ -16,13 +16,12 @@ function EmblemQRCode({
   projectKey,
   state,
   login,
-  reviewRedirectUrl = "",
   postbackUrl = "",
   postbackHeaders = "",
   postbackOverride = false,
   onSuccessUrl = "",
 }: EmblemProps) {
-  const valid = validateProps({ url, projectKey, state, reviewRedirectUrl, postbackUrl, postbackHeaders, postbackOverride });
+  const valid = validateProps({ url, projectKey, state, postbackUrl, postbackHeaders, postbackOverride });
 
   const canvasRef = useRef(null);
 
@@ -35,7 +34,6 @@ function EmblemQRCode({
     const params = {
       projectKey,
       emblemState: state,
-      reviewRedirectUrl,
       postbackUrl,
       postbackHeaders,
       postbackOverride: postbackOverride ? true : undefined,

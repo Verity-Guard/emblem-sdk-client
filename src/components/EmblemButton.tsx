@@ -20,7 +20,6 @@ function EmblemButton({
   state,
   label = "Verify 18+",
   style = {},
-  reviewRedirectUrl = "",
   postbackUrl = "",
   postbackHeaders = "",
   postbackOverride = false,
@@ -31,7 +30,7 @@ function EmblemButton({
   assignCloseWindow,
 }: EmblemButtonProps) {
   const isBrowser = typeof window !== "undefined";
-  const valid = validateProps({ url, projectKey, state, reviewRedirectUrl, postbackUrl, postbackHeaders, postbackOverride });
+  const valid = validateProps({ url, projectKey, state, postbackUrl, postbackHeaders, postbackOverride });
 
   const [childWindow, setChildWindow] = useState<Window | null>(null);
 
@@ -66,7 +65,6 @@ function EmblemButton({
     const params = {
       projectKey,
       emblemState: state,
-      reviewRedirectUrl,
       postbackUrl,
       postbackHeaders,
       postbackOverride: postbackOverride ? true : undefined,
@@ -74,7 +72,7 @@ function EmblemButton({
     };
 
     return createEmblemUrl(url, params, false, login);
-  }, [projectKey, state, reviewRedirectUrl, url, postbackUrl, postbackHeaders, postbackOverride]);
+  }, [projectKey, state, url, postbackUrl, postbackHeaders, postbackOverride, onSuccessUrl, login]);
 
   const disabledStyle = {
     ...style,
