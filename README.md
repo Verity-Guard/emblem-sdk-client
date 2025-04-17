@@ -43,6 +43,7 @@ function App() {
         assignCloseWindow={(closeFn) => {
           closeWindowRef.current = closeFn;
         }}
+        openInNewTab
       />
     </div>
   );
@@ -69,7 +70,7 @@ export default App;
 | className         | string                          | false    | Custom CSS class                                                                                                                                                                                   |
 | style             | object                          | false    | Custom style object                                                                                                                                                                                |
 | assignCloseWindow | (closeFunc: () => void) => void | false    | Allows implementers to receive a function that can be used to programmatically close the opened Emblem window on-demand                                                                            |
-
+| openInNewTab      | boolean                         | false    | If true, the Emblem window will be opened in a new tab instead of a new window. This property is a no-op when onSuccessUrl is set.                                                                 |
 ---
 
 ```typescript
@@ -86,6 +87,7 @@ interface Props {
   className?: string;
   style?: CSSProperties;
   assignCloseWindow?: (closeFunc: () => void) => void;
+  openInNewTab?: boolean;
 }
 ```
 
