@@ -92,23 +92,19 @@ function EmblemButton({
       if (isLink) {
         event.preventDefault();
       }
-      return;
+      return true;
     }
 
     mixpanel.trackEvent({ event: 'Emblem Button Click', emblemState: state, projectKey });
 
-    // Handle full page redirect first
-    if (onSuccessUrl) {
-      onClickCallback?.();
-      window.location.href = emblemRedirectRoute;
-      return;
-    }
-
-    // Call the generic callback
-    onClickCallback?.();
-
     // Handle window/tab opening in browser
     if (isBrowser) {
+      // Handle full page redirect first
+      if (onSuccessUrl) {
+        onClickCallback?.();
+        window.location.href = emblemRedirectRoute;
+        return true;
+      }
       if (openInNewTab) {
         // --- Open in New Tab ---
         // For <a> tags, the default behavior + target="_blank" handles it.
@@ -130,6 +126,10 @@ function EmblemButton({
         setChildWindow(newWindow);
       }
     }
+    // Call the generic callback
+    onClickCallback?.();
+
+    return true;
   };
 
   // Determine target for the <a> tag variant
