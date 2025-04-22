@@ -1,6 +1,6 @@
 {
   "name": "@verityguard/emblem-sdk-client",
-  "version": "1.4.11",
+  "version": "1.4.12",
   "main": "lib/index.js",
   "author": "Verity Guard, LLC",
   "repository": {
@@ -9,7 +9,7 @@
   },
   "scripts": {
     "clean": "rimraf lib/",
-    "build": "yarn clean && tsc && copyfiles -u 1 src/styles/*.css lib && copyfiles -u 1 src/images/**/* lib",
+    "build": "npm run clean && tsc && copyfiles -u 1 src/styles/*.css lib && copyfiles -u 1 src/images/**/* lib",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

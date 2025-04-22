@@ -16,6 +16,7 @@ interface EmblemProps {
   onSuccessUrl?: string;
   assignCloseWindow?: (closeFn: () => void) => void;
   login?: boolean;
+  openInNewTab?: boolean;
 }
 
 export default EmblemProps;

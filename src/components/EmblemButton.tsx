@@ -12,7 +12,10 @@ export interface EmblemButtonProps extends EmblemProps {
   spinnerColor?: string;
   className?: string;
   assignCloseWindow?: (closeFunc: () => void) => void;
+  openInNewTab?: boolean;
 }
+
+const NEW_WINDOW_DIMS = 'width=840,height=850';
 
 function EmblemButton({
   url,
@@ -28,6 +31,7 @@ function EmblemButton({
   onClickCallback,
   className = "",
   assignCloseWindow,
+  openInNewTab = false,
 }: EmblemButtonProps) {
   const isBrowser = typeof window !== "undefined";
   const valid = validateProps({ url, projectKey, state, postbackUrl, postbackHeaders, postbackOverride });
@@ -60,6 +64,7 @@ function EmblemButton({
   }, [isBrowser]);
 
   const isButton = Component === 'button';
+  const isLink = Component === 'a';
 
   const emblemRedirectRoute = useMemo(() => {
     const params = {
@@ -80,31 +85,70 @@ function EmblemButton({
     backgroundColor: "#ccc",
   };
 
-  const handleOnClick = () => {
+  const handleOnClick = (event: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
+    if (!valid) {
+      // If it's an invalid link, prevent default navigation.
+      // Buttons are handled by the 'disabled' attribute.
+      if (isLink) {
+        event.preventDefault();
+      }
+      return true;
+    }
+
     mixpanel.trackEvent({ event: 'Emblem Button Click', emblemState: state, projectKey });
-    if (onSuccessUrl) {
-      onClickCallback?.();
-      return window.location.href = emblemRedirectRoute;
+
+    // Handle window/tab opening in browser
+    if (isBrowser) {
+      // Handle full page redirect first
+      if (onSuccessUrl) {
+        onClickCallback?.();
+        window.location.href = emblemRedirectRoute;
+        return true;
+      }
+      if (openInNewTab) {
+        // --- Open in New Tab ---
+        // For <a> tags, the default behavior + target="_blank" handles it.
+        // For <button>, we explicitly open the tab.
+        if (isButton) {
+          window.open(emblemRedirectRoute, '_blank');
+        }
+        setChildWindow(null); // Not managing a specific window in this case
+      } else {
+        // Prevent default for <a> tags if we're opening a popup manually
+        if (isLink) {
+          event.preventDefault();
+        }
+        const newWindow = window.open(
+          emblemRedirectRoute,
+          "verify-age-window",
+          NEW_WINDOW_DIMS
+        );
+        setChildWindow(newWindow);
+      }
     }
-    if (isButton && isBrowser) {
-      const newWindow = window.open(
-        emblemRedirectRoute,
-        "verify-age-window",
-        "width=380,height=800"
-      );
-      setChildWindow(newWindow);
-    }
+    // Call the generic callback
     onClickCallback?.();
+
+    return true;
   };
+
+  // Determine target for the <a> tag variant
+  const linkTarget = !onSuccessUrl && openInNewTab ? '_blank' : undefined;
 
   return (
     <Component
-      type="button"
-      onClick={handleOnClick}
       style={valid ? style : disabledStyle}
       className={className}
-      disabled={!valid}
-      {...(!isButton && { href: emblemRedirectRoute, target: onSuccessUrl ? undefined : '_blank' })}
+      onClick={handleOnClick}
+      // Button specific props
+      {...(isButton && { type: "button", disabled: !valid })}
+      // Link specific props
+      {...(isLink && {
+        href: valid ? emblemRedirectRoute : undefined,
+        target: linkTarget,
+        // Add rel for security when target is _blank
+        ...(linkTarget === '_blank' && { rel: 'noopener noreferrer' }),
+      })}
     >
       {label}
     </Component>
