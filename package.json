@@ -1,6 +1,6 @@
 {
   "name": "@verityguard/emblem-sdk-client",
-  "version": "1.4.11",
+  "version": "1.4.12",
   "main": "lib/index.js",
   "author": "Verity Guard, LLC",
   "repository": {
