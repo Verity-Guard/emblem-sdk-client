@@ -9,7 +9,6 @@ export interface EmblemButtonProps extends EmblemProps {
   label?: string;
   style?: CSSProperties;
   onClickCallback?: () => void;
-  spinnerColor?: string;
   className?: string;
   assignCloseWindow?: (closeFunc: () => void) => void;
   openInNewTab?: boolean;
